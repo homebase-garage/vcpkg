@@ -3,10 +3,13 @@
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO boostorg/dynamic_bitset
-    REF boost-1.83.0
-    SHA512 33795e6323b1a91bec31789e2f1ede38ce952b2a50fbd10f931225a0e83e4ad530827392991e8a6f994e06edb1627cb29927c9111c6ff98e18b2e17fd31b945e
+    REF boost-${VERSION}
+    SHA512 f018fe1de813bd731ed570601191e6c99180024abb7b7befcd759e09cb2da6ce63d60b1a74062b5902751750a5cb94e64357037623273bd72139bef9181dd536
     HEAD_REF master
 )
 
-include(${CURRENT_INSTALLED_DIR}/share/boost-vcpkg-helpers/boost-modular-headers.cmake)
-boost_modular_headers(SOURCE_PATH ${SOURCE_PATH})
+set(FEATURE_OPTIONS "")
+boost_configure_and_install(
+    SOURCE_PATH "${SOURCE_PATH}"
+    OPTIONS ${FEATURE_OPTIONS}
+)

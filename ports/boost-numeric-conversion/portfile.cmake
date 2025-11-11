@@ -3,10 +3,13 @@
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO boostorg/numeric_conversion
-    REF boost-1.83.0
-    SHA512 41ea20e08416058d264ea11825715a4f5c299bf34152628875436b2a02bb99325ba97b5ebcfea7f4b5bdbfdc64b3b31329a7e7418341a19a294969ae22eef43e
+    REF boost-${VERSION}
+    SHA512 ad4dfc9533aadb7421265e378b5bdedfbe2b1bfd6de661fa8d2e318d688563f2b47b662171633bd474a0d02ce566106eec36c8fe788661bab33e8c60b0b41ecc
     HEAD_REF master
 )
 
-include(${CURRENT_INSTALLED_DIR}/share/boost-vcpkg-helpers/boost-modular-headers.cmake)
-boost_modular_headers(SOURCE_PATH ${SOURCE_PATH})
+set(FEATURE_OPTIONS "")
+boost_configure_and_install(
+    SOURCE_PATH "${SOURCE_PATH}"
+    OPTIONS ${FEATURE_OPTIONS}
+)
